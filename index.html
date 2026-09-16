@@ -814,7 +814,7 @@ function gamePlan(s){
     return {key: sec.key, title: sec.title, label: sec.label, items: picked};
   });
   return {profile: pre.long + "; " + post.long + ".",
-          profileShort: "THEY: " + pre.short + ", " + post.short + ".", sections: sections};
+          profileShort: "THEM: " + pre.short + ", " + post.short + ".", sections: sections};
 }
 
 function planNote(plan){
@@ -824,7 +824,7 @@ function planNote(plan){
     secs.forEach((sec, idx) => {
       const n = counts[idx];
       if (!n) return;
-      const lead = counts.slice(0, idx).some(c => c) ? "" : "YOU - ";
+      const lead = counts.slice(0, idx).some(c => c) ? "" : "ME - ";
       const shorts = sec.items.slice(0, n).map(i => i.short);
       parts.push(lead + sec.label + ": " + shorts.join("; ") + ".");
     });
@@ -1041,11 +1041,11 @@ function renderVerdict(p){
   }
 
   const gp = p.gamePlan;
-  h += '<p class="eyebrow" style="margin-top:18px">What they do</p>' +
+  h += '<p class="eyebrow" style="margin-top:18px">Them</p>' +
     '<p class="profile">' + esc(gp.profile) + "</p>" +
-    '<p class="eyebrow" style="margin-top:14px">What you do</p>';
+    '<p class="eyebrow" style="margin-top:14px">Me</p>';
   for (const sec of gp.sections){
-    h += '<div class="plansec"><h5>You \u2014 ' + esc(sec.title) + "</h5><ul>" +
+    h += '<div class="plansec"><h5>Me \u2014 ' + esc(sec.title) + "</h5><ul>" +
       sec.items.map(i => "<li>" + esc(i.long) + "</li>").join("") + "</ul></div>";
   }
 
